@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Equipment Fault Dashboard · Dean Jefferies</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <!-- SECTION 1 — Navigation and project identity -->
+  <header class="topbar"><a class="brand" href="./"><span class="mark">EF</span> Equipment / Faults</a><a href="https://github.com/DJefferies1993/equipment-fault-dashboard">View source ↗</a></header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">OPERATIONS OVERVIEW</p><h1>Equipment fault dashboard</h1><p class="subtitle">Track issues. Prioritise repairs. Keep equipment moving.</p></div><span class="local-tag">● Local demo</span></div>
+    <p class="notice">Fictional equipment data. Records stay in this browser. Export a backup before clearing browser data.</p>
+
+    <!-- SECTION 2 — Full-dataset summary -->
+    <section class="stats" aria-label="Fault summary">
+      <article><span>Total records</span><strong id="total">0</strong><small>All recorded issues</small></article>
+      <article><span>Active faults</span><strong id="active">0</strong><small>Open or in progress</small></article>
+      <article class="urgent"><span>Critical / active</span><strong id="critical">0</strong><small>Highest priority</small></article>
+      <article><span>Resolved</span><strong id="resolved">0</strong><small>Completed issues</small></article>
+    </section>
+
+    <!-- SECTION 3 — Fault entry and status distribution -->
+    <section class="workspace">
+      <div class="panel"><div class="panel-heading"><h2>Log a fault</h2><span>New records start open</span></div>
+        <form id="fault-form">
+          <div class="form-row"><label>Equipment<input id="equipment" required maxlength="80" placeholder="e.g. Haematology analyser 02"></label><label>Severity<select id="severity"><option>Warning</option><option>Critical</option><option>Info</option></select></label></div>
+          <label>Fault summary<input id="summary" required maxlength="250" placeholder="Describe the issue clearly"></label>
+          <button type="submit" class="primary">＋ Log fault</button>
+        </form>
+      </div>
+      <div class="panel"><div class="panel-heading"><h2>Resolution overview</h2></div><p class="muted">Current status across all equipment</p><div id="chart" aria-label="Faults by status"></div></div>
+    </section>
+
+    <!-- SECTION 4 — Searchable register and dataset controls -->
+    <section class="panel register" aria-labelledby="register-title">
+      <div class="panel-heading"><div><h2 id="register-title">Fault register</h2><span id="result-count"></span></div><div class="actions"><button id="export">Export JSON</button><label class="file-button">Import JSON<input type="file" id="import-file" accept="application/json,.json"></label><button id="demo">Load demo</button></div></div>
+      <div class="filters"><label>Search<input id="search" type="search" placeholder="Equipment or fault description"></label><label>Severity<select id="severity-filter"><option>All</option><option>Critical</option><option>Warning</option><option>Info</option></select></label><label>Status<select id="status-filter"><option>All</option><option>Open</option><option>In progress</option><option>Resolved</option></select></label></div>
+      <div class="table-scroll"><table><thead><tr><th>Equipment</th><th>Fault summary</th><th>Severity</th><th>Status</th><th>Logged</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <p id="empty" hidden>No faults match these filters.</p>
+    </section>
+    <p id="message" role="status" aria-live="polite"></p>
+  </main>
+  <footer>Dean Jefferies <span>JavaScript · Browser storage · Equipment workflows</span></footer>
+</body>
+</html>
