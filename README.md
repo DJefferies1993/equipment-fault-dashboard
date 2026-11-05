@@ -4,6 +4,8 @@
 
 A browser application for recording fictional equipment issues, prioritising active faults and tracking repairs. Includes a searchable fault register, status chart and portable JSON backups.
 
+**[Open the live demo](https://djefferies1993.github.io/equipment-fault-dashboard/)** · [Browse the source](https://github.com/DJefferies1993/equipment-fault-dashboard)
+
 ![Dashboard preview](docs/dashboard.png)
 
 ## Run locally
