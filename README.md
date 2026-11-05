@@ -38,6 +38,7 @@ Summary cards and the status chart show the full dataset; the register count des
 | `index.html` / `style.css` | Labelled forms and responsive presentation |
 | `server.js` | Local server restricted to application files |
 | `model.test.js` | Data rules and import boundary tests |
+| `server.test.js` | Local HTTP serving and malformed-request checks |
 
 No framework or remote service is needed. User text is rendered using DOM text properties. Imports are capped at 1,000 records and 2 MB; failed validation leaves current data untouched.
 
@@ -47,7 +48,7 @@ No framework or remote service is needed. User text is rendered using DOM text p
 npm test
 ```
 
-Tests cover filter combinations, totals, JSON round trips, invalid imports and duplicate IDs. Browser checks cover forms, persistence and layout separately.
+Tests cover filter combinations, totals, JSON round trips, invalid imports and duplicate IDs. Server checks cover normal requests, HEAD responses, blocked files, unsupported methods and malformed paths. Browser checks cover forms, persistence and layout separately.
 
 ## Scope and development
 
