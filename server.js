@@ -13,7 +13,15 @@ const files = {
 
 // SECTION 2 — Local development server
 const server = http.createServer(async (request, response) => {
-  const file = files[new URL(request.url, "http://localhost").pathname];
+  let pathname;
+  try {
+    pathname = new URL(request.url, "http://localhost").pathname;
+  } catch {
+    response.writeHead(400);
+    response.end("Invalid request path");
+    return;
+  }
+  const file = files[pathname];
   if (!file || !["GET", "HEAD"].includes(request.method)) {
     response.writeHead(404); response.end("Not found"); return;
   }
@@ -24,4 +32,5 @@ const server = http.createServer(async (request, response) => {
   } catch { response.writeHead(500); response.end("Could not read application file."); }
 });
 server.on("error", error => { console.error(error.message); process.exitCode = 1; });
-server.listen(4173, "127.0.0.1", () => console.log("Dashboard: http://127.0.0.1:4173"));
+const port = Number(process.env.PORT ?? 4173);
+server.listen(port, "127.0.0.1", () => console.log(`Dashboard: http://127.0.0.1:${server.address().port}`));
